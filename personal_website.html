@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Senior Go-разработчик и AI-эксперт. От Челябинска до Москвы. От работы за чипсы  до работы в топовых IT-компаниях.">
+    <title>Влад Волков | Разработчик & AI-эксперт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #165710;
+            --primary-dark: #0d3908;
+            --primary-light: #1e7314;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-placeholder {
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Journey Timeline */
+        .journey-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Skills Section */
+        .skills-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .skills-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skills-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            border: 2px solid var(--primary);
+        }
+
+        /* Philosophy Section */
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .philosophy-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-content .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-top: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            background: white;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            .photo-placeholder {
+                width: 280px;
+                height: 280px;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy-content {
+                padding: 2rem;
+            }
+
+            .philosophy-content p {
+                font-size: 1.1rem;
+            }
+
+            .philosophy-content .quote {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="container">
+        <div class="logo">Влад Волков</div>
+        <ul>
+            <li><a href="#journey">Путь</a></li>
+            <li><a href="#achievements">Достижения</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Senior Go-разработчик.<br>AI-эксперт.<br>Предприниматель.</h1>
+            <p>От Челябинска до Москвы. От работы за чипсы  до работы в топовых IT-компаниях.</p>
+            <div class="cta-buttons">
+                <a href="#journey" class="btn btn-primary">Моя история</a>
+                <a href="#contact" class="btn btn-secondary">Связаться</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <div class="photo-placeholder">
+                <img src="2025-10-14%2014.33.31.jpg" alt="" width="950" height="500">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Journey Timeline -->
+<section id="journey">
+    <div class="container">
+        <h2>Мой путь</h2>
+        <p class="section-subtitle">От идеи до реализации — всегда быстро и качественно</p>
+
+        <div class="journey-content">
+            <div class="timeline-item">
+                <div class="timeline-year">2017-2018 | 17 лет</div>
+                <h3>Старт: Неоновые вывески</h3>
+                <p>Я всегда интересовался бизнесом , но не мог найти то , чем хочу заниматься. Во время подготовки к ЕГЭ понял что хочу запустить пайку неоновых вывесок , научился с нуля паять и общаться с заводами. В это время поступил на Анализ больших данных в Финансовый университет при правительстве на прикладную информатику . </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2019 | 19 лет</div>
+                <h3>Вход в IT-индустрию</h3>
+                <p>За две недели прошел собеседование на стажировку в Wildberries на незнакомом языке программирования. Через неделю получил оффер на криптобирже в Москве. Работал по 10-12 часов в день, осваивая технологии на ходу.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2020 | 20 лет</div>
+                <h3>Рост и первые проекты</h3>
+                <p>Поступил в МГТУ им. Баумана на бюджет, совмещая с работой на бирже. Вместе с другом организовал разработку сайтов для крупных криптокомпании, привлек команду и скоординировал проект.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2021 | 21 год</div>
+                <h3>Senior-позиция и менторство</h3>
+                <p>Стал Senior Go-разработчиком в Магните. Полгода проводил собеседования в Сбертехе, параллельно ежедневно ходил на собеседования сам. Начал помогать другим входить в IT — более 15 человек получили работу благодаря моим советам и мок-интервью.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2022 | 22 года</div>
+                <h3>Предпринимательство</h3>
+                <p>Начал с настройки и рекламы салона красоты для мамы, оплатив все расходы. Постепенно добавлял нейросети в работу и делал проекты для компаний . Съездил в Японию и Китай, оплатив поездку для себя и девушки. Запустил YouTube-канал по автоматизации. К моей группе наставничества присоединилось 10 человек для входа в IT.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024-2025 | Сейчас</div>
+                <h3></h3>
+                <p>Заново создал ALODA - ИИ агенство для помощи бизнесу . Начал развивать ютуб канал</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" style="background: white;">
+    <div class="container">
+        <h2>Ключевые достижения</h2>
+        <p class="section-subtitle">То, чем я горжусь</p>
+
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🎓</div>
+                <h3>Самостоятельное образование</h3>
+                <p>Поступил в топ-вуз Москвы, полностью самостоятельно подготовившись к ЕГЭ. Освоил программирование с нуля и прошел отбор в Школу 21 за месяц.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">⚡</div>
+                <h3>Быстрое обучение</h3>
+                <p>Многократно осваивал новые технологии и языки программирования за недели под конкретные проекты.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+                <h3>Senior в 21 год</h3>
+                <p>Прошел путь от джуниора до Senior Go-разработчика за 3 года. Работал в Сбертехе, криптобиржах и Магните.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">👥</div>
+                <h3>Менторство 15+ человек</h3>
+                <p>Помог более чем 15 людям войти в IT-индустрию через советы, мок-интервью и поддержку. Провел десятки собеседований в Сбертехе.</p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🤖</div>
+                <h3>AI-автоматизация</h3>
+                <p>Создал работающие решения для бизнеса: чат-боты, интеграции с CRM, автоматизация на N8N.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <div class="container">
+        <h2>Навыки и экспертиза</h2>
+        <p class="section-subtitle">Технологии и компетенции</p>
+
+        <div class="skills-content">
+            <div class="skills-category">
+                <h3>Разработка</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">Go (Golang)</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Backend Architecture</span>
+                    <span class="skill-tag">API Development</span>
+                    <span class="skill-tag">Microservices</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>AI & Автоматизация</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">N8N</span>
+                    <span class="skill-tag">ChatGPT API</span>
+                    <span class="skill-tag">Claude API</span>
+                    <span class="skill-tag">AI-чат-боты</span>
+                    <span class="skill-tag">Zapier/Make.com</span>
+                    <span class="skill-tag">Workflow Automation</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>Интеграции</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">YClients</span>
+                    <span class="skill-tag">AmoCRM</span>
+                    <span class="skill-tag">Bitrix24</span>
+                    <span class="skill-tag">WhatsApp Business</span>
+                    <span class="skill-tag">Telegram Bots</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Philosophy -->
+<section style="background: white;">
+    <div class="container">
+        <h2>Моя философия</h2>
+
+        <div class="philosophy-content">
+            <p>Я верю, что способность быстро учиться и адаптироваться — это главный навык в современном мире. Технологии меняются каждый день, но умение превращать вызовы в возможности остается неизменным.</p>
+
+            <p>Лучшие результаты я показываю в условиях ограничений — будь то время, ресурсы или знания. Именно ограничения заставляют искать нестандартные решения и двигаться быстрее.</p>
+
+            <div class="quote">
+                "Не ждите идеальных условий.<br>Начинайте с тем, что есть, и учитесь на ходу."
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <div class="container">
+        <h2>Давайте познакомимся</h2>
+        <div class="contact-content">
+            <p class="contact-text">Открыт для интересных проектов, сотрудничества и обмена опытом.<br>Всегда рад помочь советом тем, кто начинает свой путь в IT.</p>
+
+            <div class="social-links">
+                <a href="https://www.youtube.com/@vlad_vlkv" target="_blank" class="social-link">
+                    📺 YouTube
+                </a>
+                <a href="https://instagram.com/vlad_vlkv" target="_blank" class="social-link">
+                    📸 Instagram
+                </a>
+                <a href="https://t.me/vlad_vlkv" target="_blank" class="social-link">
+                    💬 Telegram
+                </a>
+                <a href="contact@aloda.agency" class="social-link">
+                    ✉️ Email
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Влад Волков. Все права защищены.</p>
+    <p style="margin-top: 0.5rem; opacity: 0.7;">Senior Go-разработчик | AI-эксперт | Москва, Россия</p>
+</footer>
+
+<script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
